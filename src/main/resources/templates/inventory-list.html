@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory List</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Inventory List</h1>
+        <a th:href="@{/ui/inventory/add}" class="btn btn-primary">Add Inventory</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="inventory : ${inventoryList}">
+                <td th:text="${inventory.id}"></td>
+                <td th:text="${inventory.inv_name}"></td>
+                <td th:text="${inventory.inv_desc}"></td>
+                <td th:text="${inventory.quantity}"></td>
+                <td>
+                    <a th:href="@{/ui/inventory/edit/{id}(id=${inventory.id})}" class="btn btn-warning">Edit</a>
+                    <a th:href="@{/ui/inventory/delete/{id}(id=${inventory.id})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
